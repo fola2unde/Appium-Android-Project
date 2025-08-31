@@ -3,6 +3,7 @@ import io.appium.java_client.AppiumDriver;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -32,13 +33,26 @@ public class AppTest {
 
         driver = new AppiumDriver(url, cap);
 
+//Pass elements
+        Thread.sleep(2000);
+        driver.findElement(new By.ByXPath("//android.widget.Button[@resource-id=\"org.simple.clinic.staging:id/nextButton\"]\n")).click();
+        String actualSearchFind = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiSelector().resourceId(\"org.simple.clinic.staging:id/introOneTextView\")")).getText();
+        Assertions.assertEquals("""
+                Search & find\s
+                thousands of patients\s
+                with hypertension""", actualSearchFind);
+        String actualRecord = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiSelector().resourceId(\"org.simple.clinic.staging:id/introTwoTextView\")")).getText();
+        Assertions.assertEquals("""
+                Maintain records of\s
+                blood pressures\s
+                & medicines""", actualRecord);
 
-
-
-
+        driver.findElement(new By.ByXPath("//android.widget.Button[@resource-id=\"org.simple.clinic.staging:id/getStartedButton\"]\n")).click();
+        String actualTermPage = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiSelector().text(\"Terms of Use\")")).getText();
+        Assertions.assertEquals("Terms of Use", actualTermPage);
+        driver.findElement(new By.ByXPath("//android.widget.Button\n")).click();
 
     }
-
 
 
 }
