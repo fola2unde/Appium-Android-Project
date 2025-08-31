@@ -18,15 +18,7 @@ public class AppTest {
 
     public static void openMobileApp() throws MalformedURLException, InterruptedException {
 //Pass desired capabilities here:
-        DesiredCapabilities cap = new DesiredCapabilities();
-        cap.setCapability("appium:autoGrantPermissions", true);
-        cap.setCapability("appium:deviceName", "sdk_gphone64_x86_64");
-        cap.setCapability("appium:udid", "emulator-5554");
-        cap.setCapability("platformName", "Android");
-        cap.setCapability("appium:platformVersion", "15");
-        cap.setCapability("appium:automationName", "UiAutomator2");
-        cap.setCapability("appium:appPackage", "org.simple.clinic.staging");
-        cap.setCapability("appium:appActivity", "org.simple.clinic.setup.SetupActivity");
+        DesiredCapabilities cap = getDesiredCapabilities();
 
 //Setup url connection to mobile
         URL url = new URL("http://127.0.0.1:4723/");
@@ -52,6 +44,19 @@ public class AppTest {
         Assertions.assertEquals("Terms of Use", actualTermPage);
         driver.findElement(new By.ByXPath("//android.widget.Button\n")).click();
 
+    }
+
+    private static DesiredCapabilities getDesiredCapabilities() {
+        DesiredCapabilities cap = new DesiredCapabilities();
+        cap.setCapability("appium:autoGrantPermissions", true);
+        cap.setCapability("appium:deviceName", "sdk_gphone64_x86_64");
+        cap.setCapability("appium:udid", "emulator-5554");
+        cap.setCapability("platformName", "Android");
+        cap.setCapability("appium:platformVersion", "15");
+        cap.setCapability("appium:automationName", "UiAutomator2");
+        cap.setCapability("appium:appPackage", "org.simple.clinic.staging");
+        cap.setCapability("appium:appActivity", "org.simple.clinic.setup.SetupActivity");
+        return cap;
     }
 
 
