@@ -43,6 +43,32 @@ public class AppTest {
         String actualTermPage = driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiSelector().text(\"Terms of Use\")")).getText();
         Assertions.assertEquals("Terms of Use", actualTermPage);
         driver.findElement(new By.ByXPath("//android.widget.Button\n")).click();
+        Thread.sleep(1000);
+        driver.findElement(new By.ByXPath("//android.widget.RadioButton[@resource-id=\"org.simple.clinic.staging:id/countryButton\" and @text=\"India\"]")).click();
+        Thread.sleep(1000);
+        driver.findElement(new By.ByXPath("//android.widget.RadioButton[@resource-id=\"org.simple.clinic.staging:id/stateRadioButton\" and @text=\"Goa\"]")).click();
+//        driver.findElement(new By.ByXPath("//android.widget.RadioButton[@resource-id=\"org.simple.clinic.staging:id/stateRadioButton\" and @text=\"Goa\"]")).click();
+        Thread.sleep(1000);
+        driver.findElement(new By.ByXPath("//android.widget.EditText[@resource-id=\"org.simple.clinic.staging:id/phoneNumberEditText\"]")).sendKeys("91203456");
+        driver.findElement(new By.ByXPath("//android.widget.Button[@resource-id=\"org.simple.clinic.staging:id/nextButton\"]")).click();
+
+        Thread.sleep(3000);
+        driver.findElement(new By.ByXPath("//android.widget.EditText[@resource-id=\"org.simple.clinic.staging:id/pinEditText\"]")).sendKeys("1234");
+        driver.findElement(new By.ByXPath("//android.widget.EditText[@resource-id=\"org.simple.clinic.staging:id/confirmPinEditText\"]")).sendKeys("1234");
+        driver.findElement(new By.ByXPath("//android.widget.EditText[@resource-id=\"org.simple.clinic.staging:id/fullNameEditText\"]")).sendKeys("John Doe");
+        driver.findElement(new By.ByXPath("//android.view.ViewGroup[@resource-id=\"org.simple.clinic.staging:id/registrationname_root\"]/android.widget.FrameLayout")).click();
+        Thread.sleep(1000);
+        driver.findElement(new By.ByXPath("//android.widget.EditText[@resource-id=\"org.simple.clinic.staging:id/pinEditText\"]")).sendKeys("1234");
+//        driver.findElement(new By.ByXPath("//android.widget.EditText[@resource-id=\"org.simple.clinic.staging:id/confirmPinEditText\"]")).sendKeys("1234");
+//        driver.findElement(new By.ByXPath("//android.widget.Button[@resource-id=\"org.simple.clinic.staging:id/skipButton\"]")).click();
+//        Thread.sleep(1000);
+//        driver.findElement(new By.ByXPath("//androidx.recyclerview.widget.RecyclerView[@resource-id=\"org.simple.clinic.staging:id/facilityRecyclerView\"]/androidx.cardview.widget.CardView[1]/android.widget.LinearLayout")).click();
+//        Thread.sleep(1000);
+//        driver.findElement(new By.ByXPath("//android.widget.Button[@resource-id=\"org.simple.clinic.staging:id/yesButton\"]")).click();
+//        driver.findElement(new By.ByXPath("//android.widget.Button[@resource-id=\"org.simple.clinic.staging:id/skipButton\"]")).click();
+//        driver.findElement(new By.ByXPath("//android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/permission_deny_button\"]")).click();
+//        driver.findElement(new By.ByXPath("//android.widget.Button[@resource-id=\"android:id/button2\"]")).click();
+
 
     }
 
@@ -51,7 +77,7 @@ public class AppTest {
         cap.setCapability("appium:autoGrantPermissions", true);
         cap.setCapability("appium:deviceName", "sdk_gphone64_x86_64");
         cap.setCapability("appium:udid", "emulator-5554");
-        cap.setCapability("platformName", "Android");
+            cap.setCapability("platformName", "Android");
         cap.setCapability("appium:platformVersion", "15");
         cap.setCapability("appium:automationName", "UiAutomator2");
         cap.setCapability("appium:appPackage", "org.simple.clinic.staging");
